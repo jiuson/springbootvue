@@ -1,5 +1,7 @@
 package com.example.springbootvue.springboot.mvcbase;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,13 +12,18 @@ import lombok.Setter;
  * @create: 2019-03-27 14:55:13
  */
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Setter
 @Getter
 public class ResponseResult<P> {
 
+    @JsonView(ResultJsonView.class)
     private boolean success;
+    @JsonView(ResultJsonView.class)
     private int errorCode;
+    @JsonView(ResultJsonView.class)
     private String errorMessage;
+    @JsonView(ResultJsonView.class)
     private P payload;
 
     public P deserialize(){
@@ -55,4 +62,6 @@ public class ResponseResult<P> {
         instance.setSuccess(false);
         return instance;
     }
+
+    public interface ResultJsonView{}
 }

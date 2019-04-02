@@ -3,7 +3,7 @@ package com.example.springbootvue.springboot.repository;
 
 import com.example.springbootvue.springboot.domain.TbUser;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
  * @program: springboot-vue
@@ -16,4 +16,6 @@ public interface UserRepository {
     TbUser findByUsername(String username);
 
     int insertUser(TbUser tbUser);
+
+    List<TbUser> findAllUser();
 }

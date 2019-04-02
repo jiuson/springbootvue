@@ -4,6 +4,8 @@ import com.example.springbootvue.springboot.domain.TbUser;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 /**
  * @program: springbootvue
  * @descripttion: user
@@ -39,4 +41,14 @@ public interface UserMapper {
     })
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     int insertUser(TbUser tbUser);
+
+    @Select(value = "select * from tb_user")
+    @Results({
+            @Result(column="id", property="id", jdbcType= JdbcType.BIGINT, id=true),
+            @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
+            @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+            @Result(column="create_date", property="createDate", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="modify_date", property="modifyDate", jdbcType=JdbcType.TIMESTAMP)
+    })
+    List<TbUser> findAllUser();
 }

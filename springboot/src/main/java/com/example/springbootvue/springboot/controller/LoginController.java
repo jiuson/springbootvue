@@ -28,7 +28,7 @@ import java.util.Optional;
  * @create: 2019-03-29 11:53:29
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping
 @Slf4j
 public class LoginController extends BaseController {
 
@@ -38,11 +38,37 @@ public class LoginController extends BaseController {
     private TokenRepository tokenRepository;
 
     /**
+     * 注册用户
+     * @param input
+     * @return
+     */
+    @PostMapping("/register")
+    public ResponseResult<Object> registerVerify(@RequestBody Map<String, String> input){
+
+        TbToken tbToken = new TbToken();
+
+        String username = input.get("username");
+        String password = input.get("password");
+
+        Optional<TbUser> tbUserOptional = Optional.ofNullable(userRepository.findByUsername(username));
+        if (tbUserOptional.isPresent()){
+            throw new GeneralException(ControllerResponseCode.REGISTER_VERIFY_USERNAME_REPEAT_CODE, ControllerResponseCode.REGISTER_VERIFY_USERNAME_REPEAT_MESSAGE);
+        }else {
+            TbUser tbUser = new TbUser();
+            tbUser.create(username, Md5Util.MD5(password));
+            userRepository.insertUser(tbUser);
+            tbToken.createToken(tbUser.getId());
+            tokenRepository.insert(tbToken);
+        }
+        return ResponseResult.success(tbToken);
+    }
+
+    /**
      * 登录验证
      * @param input
      * @return
      */
-    @PostMapping
+    @PostMapping("login")
     public ResponseResult<TbToken> loginVerify(@RequestBody Map<String, String> input){
 
         String username = input.get("username");
@@ -50,10 +76,10 @@ public class LoginController extends BaseController {
         TbToken tbToken = new TbToken();
 
         if (StringUtils.isEmpty(username)){
-            throw new GeneralException(ControllerResponseCode.LOGIN_VERIFY_EMPTY_ERROR_CODE, ControllerResponseCode.LOGIN_VERIFY_EMPTY_ERROR_MSG);
+            throw new GeneralException(ControllerResponseCode.LOGIN_VERIFY_USERNAME_ERROR_CODE, ControllerResponseCode.LOGIN_VERIFY_USERNAME_ERROR_MSG);
         }
         if (StringUtils.isEmpty(password)){
-            throw new GeneralException(ControllerResponseCode.LOGIN_VERIFY_EMPTY_ERROR_CODE, ControllerResponseCode.LOGIN_VERIFY_EMPTY_ERROR_MSG);
+            throw new GeneralException(ControllerResponseCode.LOGIN_VERIFY_PASSWORD_ERROR_CODE, ControllerResponseCode.LOGIN_VERIFY_PASSWORD_ERROR_MSG);
         }
 
         Optional<TbUser> tbUserOptional = Optional.ofNullable(userRepository.findByUsername(username));
@@ -64,12 +90,8 @@ public class LoginController extends BaseController {
             }else {
                 throw new GeneralException(ControllerResponseCode.LOGIN_VERIFY_PASSWORD_ERROR_CODE, ControllerResponseCode.LOGIN_VERIFY_PASSWORD_ERROR_MSG);
             }
-        }else {//用户不存在，注册用户
-            TbUser tbUser = new TbUser();
-            tbUser.create(username, Md5Util.MD5(password));
-            userRepository.insertUser(tbUser);
-            tbToken.createToken(tbUser.getId());
-            tokenRepository.insert(tbToken);
+        }else {//用户不存在
+            throw new GeneralException(ControllerResponseCode.LOGIN_VERIFY_USERNAME_NO_ERROR_CODE, ControllerResponseCode.LOGIN_VERIFY_USERNAME_NO_ERROR_MESSAGE);
         }
 
         return ResponseResult.success(tbToken);

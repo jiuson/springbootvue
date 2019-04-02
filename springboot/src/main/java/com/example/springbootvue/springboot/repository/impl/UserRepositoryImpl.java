@@ -6,6 +6,8 @@ import com.example.springbootvue.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @program: springboot-vue
  * @descripttion: user repository impl
@@ -29,5 +31,10 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public int insertUser(TbUser tbUser) {
         return tbUserMapper.insertUser(tbUser);
+    }
+
+    @Override
+    public List<TbUser> findAllUser() {
+        return tbUserMapper.findAllUser();
     }
 }
