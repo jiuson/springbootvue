@@ -5,12 +5,14 @@
         <el-breadcrumb-item><i class="el-icon-date"></i> 用户管理</el-breadcrumb-item>
         <el-breadcrumb-item>用户列表</el-breadcrumb-item>
       </el-breadcrumb>
-      <div class="cantainer">
+      <div>
         <el-form>
           <el-date-picker v-model="currentDate" type="date" placeholder="time" style="float: left;"></el-date-picker>
-          <el-button style="margin: 0px 540px 10px 10px; color: #3b97d1" v-on:click="search">查询</el-button>
+          <el-button style="float: left; margin-left: 20px; margin-top: 10px; color: #3b97d1" v-on:click="search">查询</el-button>
         </el-form>
-        <el-table>
+      </div>
+      <div class="cantainer">
+        <el-table :data="userData" v-if="userData.length > 0" style="width: 100%">
           <el-table-column fixed width="100px">
             <template slot="header" slot-scope="scope">
               <el-tooltip content="名称" placement="top">
@@ -20,6 +22,9 @@
             <template slot-scope="scope"></template>
           </el-table-column>
         </el-table>
+        <div  v-else style="text-align: center; width: 100%;">
+          <span>暂无数据</span>
+        </div>
       </div>
     </div>
   </div>
@@ -31,7 +36,8 @@
       name: "UserList",
       data() {
         return {
-          currentDate: ''
+          currentDate: '',
+          userData: []
         }
       },
       methods: {
@@ -44,6 +50,7 @@
 
 <style lang="scss" scoped>
   .container {
+    width: 100%;
     line-height: 10px;
   }
 </style>
