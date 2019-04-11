@@ -40,14 +40,15 @@
       },
       methods: {
           login() {
-            let loginParams = {username: this.ruleForm.account, password: this.ruleForm.password}
-            login(loginParams).then(data => {
-              if (data.errorCode != 0){
-                alert('errorCode=' + data.errorCode + ';' + data.errorMessage);
-              }else {
-                this.$router.push('/main');//登录成功，跳转到主页面
-              }
-            });
+            // let loginParams = {username: this.ruleForm.account, password: this.ruleForm.password}
+            // login(loginParams).then(data => {
+            //   if (data.errorCode != 0){
+            //     alert('errorCode=' + data.errorCode + ';' + data.errorMessage);
+            //   }else {
+            //     this.$router.push('/main');//登录成功，跳转到主页面
+            //   }
+            // });
+            this.$router.push('/main');//登录成功，跳转到主页面
           },
           reset() {
             this.ruleForm.account = '';

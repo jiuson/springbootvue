@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <form class="login-form" ref="ruleForm" :model="ruleForm" :rules="rules" label-width="70px" label-position="left">
+    <form class="login-form" ref="ruleForm" :model="ruleForm" label-width="70px" label-position="left">
       <h2 class=  "login-form-title">ELEMENT-VUE登录</h2>
         <div class="account-div">
           用户名:<input class="login-form-account" v-model="ruleForm.account" placeholder="请输入账号"/>
@@ -25,29 +25,20 @@
         ruleForm: {
           account: '',
           password: ''
-        },
-        rules: {
-          account: [
-            {required: false, message: '请输入账号', trigger: ''},
-            {min: 6, max: 10, message: '长度在6-10个字符', trigger: 'blur'}
-          ],
-          password: [
-            {required: false, message: '请输入密码', trigger: 'blur'},
-            {min: 6, max: 10, message: '长度在6-10个字符', trigger: 'blur'}
-          ]
         }
       };
     },
     methods: {
       login() {
-        let loginParams = {username: this.ruleForm.account, password: this.ruleForm.password}
-        login(loginParams).then(data => {
-          if (data.errorCode != 0){
-            alert('errorCode=' + data.errorCode + ';' + data.errorMessage);
-          }else {
-            this.$router.push('/main');//登录成功，跳转到主页面
-          }
-        });
+        // let loginParams = {username: this.ruleForm.account, password: this.ruleForm.password}
+        // login(loginParams).then(data => {
+        //   if (data.errorCode != 0){
+        //     alert('errorCode=' + data.errorCode + ';' + data.errorMessage);
+        //   }else {
+        //     this.$router.push('/home');//登录成功，跳转到主页面
+        //   }
+        // });
+        this.$router.push('/home');//登录成功，跳转到主页面
       },
       reset() {
         this.ruleForm.account = '';
@@ -99,9 +90,11 @@
     height: 35px;
     margin-left: 5px;
     background-color: #4aabff;
+    border-radius: 5px;
   }
   .login-form-reset-button {
     width: 40%;
     height: 35px;
+    border-radius: 5px;
   }
 </style>
