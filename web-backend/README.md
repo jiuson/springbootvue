@@ -8,6 +8,17 @@
 # install dependencies
 npm install
 
+npm install element-ui
+
+npm install axios
+
+npm install vue-axios
+
+cnpm install node-sass --save-dev //安装node-sass 
+
+cnpm install sass-loader --save-dev //安装sass-loader 
+
+#cnpm install style-loader --save-dev //安装style-loader 有些人安装的是 vue-style-loader 其实是一样的！
 # serve with hot reload at localhost:8080
 npm run dev
 
