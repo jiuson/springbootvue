@@ -1,0 +1,30 @@
+<template>
+  <div id="app">
+    <transition>
+      <router-view/>
+    </transition>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'App'
+  }
+</script>
+
+<style>
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    background-color: bisque;
+    background-repeat: inherit;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+</style>
