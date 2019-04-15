@@ -13,17 +13,56 @@
       </div>
       <div class="cantainer">
         <div  v-if="userData.length > 0">
-          <el-table :data="userData"style="width: 100%; margin-top: -10px" height="650">
-            <el-table-column fixed width="100px" prop="name">
+          <el-table :data="userData.slice((currentPage - 1) * pageSize, currentPage * pageSize)"style="width: 100%; margin-top: -10px" height="650">
+            <el-table-column fixed width="100px" prop="number">
               <template slot="header" slot-scope="scope">
-                <el-tooltip content="名称" placement="top">
-                  <div class="tb-header">名称</div>
+                <el-tooltip content="编号" placement="top">
+                  <div class="tb-header">编号</div>
                 </el-tooltip>
+              </template>
+            </el-table-column>
+            <el-table-column fixed width="100px" prop="username">
+              <template slot="header" slot-scope="scope">
+                <el-tooltip content="姓名" placement="top">
+                  <div class="tb-header">姓名</div>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+            <el-table-column fixed width="200px" prop="address">
+              <template slot="header" slot-scope="scope">
+                <el-tooltip content="地址" placement="top">
+                  <div class="tb-header">地址</div>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+            <el-table-column fixed width="200px" prop="createDate">
+              <template slot="header" slot-scope="scope">
+                <el-tooltip content="创建时间" placement="top">
+                  <div class="tb-header">创建时间</div>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+            <el-table-column fixed width="200px" prop="modifyDate">
+              <template slot="header" slot-scope="scope">
+                <el-tooltip content="修改时间" placement="top">
+                  <div class="tb-header">修改时间</div>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                <el-button
+                  size="mini"
+                  type="danger"
+                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
           <div>
-            <el-pagination background layout="sizes, prev, pager, next" :total="userData.length"></el-pagination>
+            <el-pagination background layout="sizes, prev, pager, next" :total="totalElement" @current-change="currentChange"></el-pagination>
           </div>
         </div>
         <div  v-else style="text-align: center; width: 100%;">
@@ -36,30 +75,53 @@
 
 
 <script>
+  import {userList} from '../../api/Api'
     export default {
       name: "UserList",
       data() {
         return {
           currentDate: '',
-          userData: [{'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'},
-            {'name': 'a'}]
+          pageSize: 100,
+          currentPage: 1,
+          totalElement: '',
+          userData: []
         }
+      },
+
+      created: function(){
+        userList().then(data => {
+          console.log(data.success);
+        });
+        this.totalElement = this.userData.length;
       },
       methods: {
         search: function () {
 
+        },
+
+        /**
+         * 翻页
+         */
+        currentChange: function () {
+          console.log('翻页啦');
+        },
+
+        /**
+         * 编辑
+         * @param index
+         * @param row
+         */
+        handleEdit: function (index, row) {
+          console.log('编辑第' + index + '行' + row);
+        },
+
+        /**
+         * 删除
+         * @param index
+         * @param row
+         */
+        handleDelete: function (index, row) {
+          console.log('删除');
         }
       }
     }
