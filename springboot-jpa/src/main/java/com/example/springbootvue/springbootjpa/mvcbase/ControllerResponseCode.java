@@ -22,4 +22,7 @@ public class ControllerResponseCode {
     public static int LOGIN_VERIFY_USERNAME_NO_ERROR_CODE = -103;
     public static String LOGIN_VERIFY_USERNAME_NO_ERROR_MESSAGE = "用户不存在，请检查";
 
+    public static int DATA_NOT_EXIST_CODE = -200;
+    public static String DATA_NOT_EXIST_MESSAGE = "数据不存在";
+
 }

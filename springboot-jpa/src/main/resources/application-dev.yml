@@ -6,6 +6,8 @@ debug: false
 spring:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
   application:
     name: springboot-web
   datasource:
