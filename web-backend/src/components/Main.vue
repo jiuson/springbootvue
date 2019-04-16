@@ -12,7 +12,7 @@
               <el-dropdown-item>删除</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span style="float: right; margin-right: 65px">王小虎</span>
+          <span style="float: right; margin-right: 65px">jiuson</span>
         </el-header>
         <el-container>
           <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
@@ -26,6 +26,7 @@
               <el-submenu index="2">
                 <template slot="title"><i class="el-icon-tickets"></i>消费明细</template>
                 <el-menu-item index="2-1" v-on:click="consumeMonth">月消费明细</el-menu-item>
+                <el-menu-item index="2-2" v-on:click="consumeDay">日消费明细</el-menu-item>
               </el-submenu>
               <el-submenu index="3">
                 <template slot="title"><i class="el-icon-document"></i>统计报表</template>
@@ -52,15 +53,22 @@
       },
       methods: {
         userList: function () {
-          this.$router.push('/userList')
+          this.$router.push('/userList');
         },
 
         consumeMonth: function () {
-          this.$router.push('/consumeMonth')
+          this.$router.push('/consumeMonth');
         },
 
         chart: function () {
 
+        },
+
+        /**
+         *
+         */
+        consumeDay: function () {
+          this.$router.push('/consumeDay');
         }
       }
     }

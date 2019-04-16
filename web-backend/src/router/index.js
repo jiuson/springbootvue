@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../components/login/Login'
-import Main from "../components/Main"
+import Main from '../components/Main'
 import UserList from '../components/content/UserList'
-import ConsumeMonth from "../components/content/ConsumeMonth";
+import ConsumeMonth from '../components/content/ConsumeMonth'
+import ConsumeDay from "../components/content/ConsumeDay"
 
 Vue.use(Router)
 
@@ -20,7 +21,8 @@ export default new Router({
       component: Main,
       children: [
         {path: '/userList', name: 'userList', component: UserList},
-        {path: '/consumeMonth', name: 'consumeMonth', component: ConsumeMonth}
+        {path: '/consumeMonth', name: 'consumeMonth', component: ConsumeMonth},
+        {path: '/consumeDay', name: 'ConsumeDay', component: ConsumeDay}
       ]
     }
   ]

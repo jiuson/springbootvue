@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import {login} from '../../api/Api'
+    import {login} from '../../util/http'
     export default {
         name: "Login",
       data() {

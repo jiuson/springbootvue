@@ -3,8 +3,7 @@
 > A Vue.js project
 
 ## Build Setup
-
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -27,6 +26,11 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
+
+#axios全局封装参考:https://www.cnblogs.com/ldlx-mars/p/7908950.html
+
+#element-ui分页参考:https://www.cnblogs.com/sxgxiaoge/p/9394345.html
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
