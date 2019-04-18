@@ -27,6 +27,9 @@ public class TbUser implements Serializable {
     private String password;
 
     @JsonView({UserListJsonView.class})
+    private String address;
+
+    @JsonView({UserListJsonView.class})
     private Date createDate;
 
     @JsonView({UserListJsonView.class})
