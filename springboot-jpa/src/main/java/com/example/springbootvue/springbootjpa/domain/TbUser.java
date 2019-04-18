@@ -47,9 +47,10 @@ public class TbUser {
 
     private static final long serialVersionUID = 1L;
 
-    public void create(String username, String password){
+    public void create(String username, String password, String address){
         this.username = username;
         this.password = password;
+        this.address = address;
         this.createDate = this.modifyDate = new Date();
     }
 

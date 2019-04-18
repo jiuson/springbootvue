@@ -25,4 +25,7 @@ public class ControllerResponseCode {
     public static int DATA_NOT_EXIST_CODE = -200;
     public static String DATA_NOT_EXIST_MESSAGE = "数据不存在";
 
+    public static int PARAM_VERIFY_ERROR_CODE = -201;
+    public static String PARAM_VERIFY_ERROR_MESSAGE = "参数有误";
+
 }

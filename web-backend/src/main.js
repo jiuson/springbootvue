@@ -16,6 +16,7 @@ Vue.prototype.$fetch=fetch;
 Vue.prototype.$patch=patch;
 Vue.prototype.$put=put;
 Vue.prototype.$formatDate=formatDate;
+Vue.prototype.$axios=axios;
 
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)

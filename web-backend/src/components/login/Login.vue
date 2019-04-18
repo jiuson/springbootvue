@@ -3,7 +3,7 @@
    <el-form class="login-form" ref="ruleForm" :model="ruleForm" :rules="rules" label-width="70px" label-position="left">
     <h2 class=  "login-form-title">ELEMENT-VUE登录</h2>
     <el-form-item label="用户名:" prop="account">
-      <el-input class="login-form-account" v-model="ruleForm.account" placeholder="请输入账号"></el-input>
+      <el-input class="login-form-account" v-model="ruleForm.username" placeholder="请输入账号"></el-input>
     </el-form-item>
     <el-form-item label="密    码:" prop="password">
       <el-input class="login-form-password" v-model="ruleForm.password" type="password" placeholder="请输入密码"></el-input>
@@ -23,13 +23,13 @@
       data() {
           return {
             ruleForm: {
-              account: '',
+              username: '',
               password: ''
             },
             rules: {
               account: [
                 {required: false, message: '请输入账号', trigger: ''},
-                {min: 6, max: 10, message: '长度在6-10个字符', trigger: 'blur'}
+                {min: 2, max: 10, message: '长度在2-10个字符', trigger: 'blur'}
               ],
               password: [
                 {required: false, message: '请输入密码', trigger: 'blur'},
@@ -48,6 +48,20 @@
             //     this.$router.push('/main');//登录成功，跳转到主页面
             //   }
             // });
+            let param = this.ruleForm;
+            this.$axios({
+              url: 'http://127.0.0.1:8080/login',
+              method: 'post',
+              data: param,
+              header: {
+                'Content-Type': 'application/json'
+              }
+            }).then(response => {
+              console.log(response);
+
+            }).catch(e => {
+              // alert(JSON.stringify(e.response.data));
+            });
             this.$router.push('/main');//登录成功，跳转到主页面
           },
           reset() {

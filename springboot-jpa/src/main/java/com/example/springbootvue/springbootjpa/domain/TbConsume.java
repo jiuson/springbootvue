@@ -1,9 +1,12 @@
 package com.example.springbootvue.springbootjpa.domain;
 
+import com.example.springbootvue.springbootjpa.mvcbase.ControllerResponseCode;
+import com.example.springbootvue.springbootjpa.mvcbase.GeneralException;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -47,4 +50,44 @@ public class TbConsume {
     @Column(nullable = false)
     //添加时间
     private Date modifyDate;
+
+    /**
+     * 检验参数
+     * @param consumeName
+     * @param expenditure
+     * @param consumeType
+     * @param consumeDate
+     */
+    private void verify(String consumeName, Float expenditure, String consumeType, Long consumeDate){
+        if (StringUtils.isEmpty(consumeName) || StringUtils.isEmpty(consumeType) || null == expenditure || null == consumeDate){
+            throw new GeneralException(ControllerResponseCode.PARAM_VERIFY_ERROR_CODE, ControllerResponseCode.PARAM_VERIFY_ERROR_MESSAGE);
+        }
+        this.consumeName = consumeName;
+        this.expenditure = expenditure;
+        this.consumeType = consumeType;
+        this.consumeDate = new Date(consumeDate);
+        this.modifyDate = new Date();
+    }
+
+    /**
+     * 新增
+     * @param consumeName
+     * @param expenditure
+     * @param consumeType
+     * @param consumeDate
+     */
+    public void create(String consumeName, Float expenditure, String consumeType, Long consumeDate){
+        this.verify(consumeName, expenditure, consumeType, consumeDate);
+    }
+
+    /**
+     * 修改
+     * @param consumeName
+     * @param expenditure
+     * @param consumeType
+     * @param consumeDate
+     */
+    public void modify(String consumeName, Float expenditure, String consumeType, Long consumeDate){
+        this.verify(consumeName, expenditure, consumeType, consumeDate);
+    }
 }

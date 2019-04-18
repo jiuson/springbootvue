@@ -48,13 +48,14 @@ public class LoginController extends BaseController {
 
         String username = input.get("username");
         String password = input.get("password");
+        String address = input.get("address");
 
         Optional<TbUser> tbUserOptional = Optional.ofNullable(userRepository.findByUsername(username));
         if (tbUserOptional.isPresent()){
             throw new GeneralException(ControllerResponseCode.REGISTER_VERIFY_USERNAME_REPEAT_CODE, ControllerResponseCode.REGISTER_VERIFY_USERNAME_REPEAT_MESSAGE);
         }else {
             TbUser tbUser = new TbUser();
-            tbUser.create(username, Md5Util.MD5(password));
+            tbUser.create(username, Md5Util.MD5(password), address);
             userRepository.save(tbUser);
             tbToken.createToken(tbUser.getId());
             tokenRepository.save(tbToken);

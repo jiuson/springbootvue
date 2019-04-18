@@ -10,7 +10,7 @@ axios.interceptors.request.use(
     // const token = getCookie('名称');注意使用的时候需要引入cookie方法，推荐js-cookie
     config.data = JSON.stringify(config.data);
     config.headers = {
-      'Content-Type':'application/x-www-form-urlencoded'
+      'Content-Type':'application/json'
     }
     // if(token){
     //   config.params = {'token':token}
@@ -69,9 +69,9 @@ export function fetch(url,params={}){
  * @returns {Promise}
  */
 
-export function post(url,data = {}){
+export function post(url,data = {}, headers){
   return new Promise((resolve,reject) => {
-    axios.post(url,data)
+    axios.post(url,data,headers)
       .then(response => {
         resolve(response.data);
       },err => {
