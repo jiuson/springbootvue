@@ -36,16 +36,20 @@
                 </el-tooltip>
               </template>
             </el-table-column>
-            <el-table-column width="270px" prop="createDate">
+            <el-table-column width="270px"
+                             prop="createDate"
+                             :formatter="this.$paseDate">
               <template slot="header" slot-scope="scope">
-                <el-tooltip content="创建时间" placement="top">
+                <el-tooltip content="消费时间" placement="top">
                   <div class="tb-header">创建时间</div>
                 </el-tooltip>
               </template>
             </el-table-column>
-            <el-table-column width="270px" prop="modifyDate">
+            <el-table-column width="270px"
+                             prop="modifyDate"
+                             :formatter="this.$paseDate">
               <template slot="header" slot-scope="scope">
-                <el-tooltip content="修改时间" placement="top">
+                <el-tooltip content="记录时间" placement="top">
                   <div class="tb-header">修改时间</div>
                 </el-tooltip>
               </template>

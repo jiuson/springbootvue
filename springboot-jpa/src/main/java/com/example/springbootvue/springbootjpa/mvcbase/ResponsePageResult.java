@@ -81,4 +81,10 @@ public class ResponsePageResult<T> extends PageImpl<T> {
     public Sort getSort() {
         return super.getSort();
     }
+
+    @Override
+    @JsonView(ResponseResult.ResultJsonView.class)
+    public Pageable getPageable() {
+        return super.getPageable();
+    }
 }

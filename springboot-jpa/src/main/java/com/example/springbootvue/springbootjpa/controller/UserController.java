@@ -41,7 +41,10 @@ public class UserController extends BaseController {
     public ResponseResult<Page<TbUser>> getUserList(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                                                     @RequestParam(required = false) String date){
 
-        Page<TbUser> tbUserPage = userRepository.findAll(pageable);
+        Page<TbUser> tbUserPage = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
+            Predicate predicate = criteriaBuilder.isNotNull(root.get("id"));
+            return predicate;
+        },pageable);
 
         return ResponseResult.success(tbUserPage, pageable);
     }

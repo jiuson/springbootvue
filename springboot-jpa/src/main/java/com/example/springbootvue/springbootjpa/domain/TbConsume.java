@@ -51,6 +51,11 @@ public class TbConsume {
     //添加时间
     private Date modifyDate;
 
+    @ManyToOne(targetEntity = TbUser.class)
+    @JoinColumn(name = "tb_user_id")
+    //添加人
+    private TbUser tbUser;
+
     /**
      * 检验参数
      * @param consumeName

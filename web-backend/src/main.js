@@ -8,14 +8,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import {post,fetch,patch,put} from './util/http'
-import {formatDate} from './util/formatDate'
+import {paseDate} from './util/dataUtil'
 
 //定义全局变量
 Vue.prototype.$post=post;
 Vue.prototype.$fetch=fetch;
 Vue.prototype.$patch=patch;
 Vue.prototype.$put=put;
-Vue.prototype.$formatDate=formatDate;
+Vue.prototype.$paseDate=paseDate;
 Vue.prototype.$axios=axios;
 
 Vue.use(ElementUI)

@@ -58,11 +58,14 @@
               }
             }).then(response => {
               console.log(response);
-
+              if (response.data.errorCode === 0) {
+                this.$router.push('/main');//登录成功，跳转到主页面
+              }else {
+                alert(response.data.errorMessage)
+              }
             }).catch(e => {
               // alert(JSON.stringify(e.response.data));
             });
-            this.$router.push('/main');//登录成功，跳转到主页面
           },
           reset() {
             this.ruleForm.account = '';

@@ -3,6 +3,7 @@ server:
 logging:
   config: classpath:log/logback.xml
 debug: false
+excludePathPatterns: /login
 spring:
   jpa:
     show-sql: true

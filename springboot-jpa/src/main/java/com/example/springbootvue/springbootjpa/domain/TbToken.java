@@ -24,8 +24,9 @@ public class TbToken implements Serializable {
     @Column(name = "id", nullable = false, unique = true, length = 20)
     private Long id;
 
-    @Column(nullable = false)
-    private Long userId;
+    @ManyToOne(targetEntity = TbUser.class)
+    @JoinColumn(name = "tb_user_id")
+    private TbUser user;
 
     @Column(nullable = false)
     private String token;
@@ -38,8 +39,8 @@ public class TbToken implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public void createToken(Long userId){
-        this.userId = userId;
+    public void createToken(TbUser user){
+        this.user = user;
         this.token = UUID.randomUUID().toString();
         this.createDate = new Date();
         this.expireDate = DateUtil.addMonth(1);

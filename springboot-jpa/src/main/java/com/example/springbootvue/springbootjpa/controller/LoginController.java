@@ -57,7 +57,7 @@ public class LoginController extends BaseController {
             TbUser tbUser = new TbUser();
             tbUser.create(username, Md5Util.MD5(password), address);
             userRepository.save(tbUser);
-            tbToken.createToken(tbUser.getId());
+            tbToken.createToken(tbUser);
             tokenRepository.save(tbToken);
         }
         return ResponseResult.success(tbToken);
@@ -85,7 +85,7 @@ public class LoginController extends BaseController {
         Optional<TbUser> tbUserOptional = Optional.ofNullable(userRepository.findByUsername(username));
         if (tbUserOptional.isPresent()){//用户已存在，验证密码
             if (Md5Util.MD5(password).equalsIgnoreCase(tbUserOptional.get().getPassword())){
-                tbToken.createToken(tbUserOptional.get().getId());
+                tbToken.createToken(tbUserOptional.get());
                 tokenRepository.save(tbToken);
             }else {
                 throw new GeneralException(ControllerResponseCode.LOGIN_VERIFY_PASSWORD_ERROR_CODE, ControllerResponseCode.LOGIN_VERIFY_PASSWORD_ERROR_MSG);
