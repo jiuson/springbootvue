@@ -1,5 +1,5 @@
 <template>
-  <div class="deit">
+  <div class="deit" style="height: available">
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item><i class="el-icon-date"></i> 用户管理</el-breadcrumb-item>
@@ -14,7 +14,9 @@
       </div>
       <div class="cantainer">
         <div  v-if="userData.length > 0">
-          <el-table :data="userData" style="width: 100%; margin-top: -10px" height="650">
+          <el-table :data="userData"
+                    max-height="500"
+                    style="width: 100%; margin-top: -10px">
             <el-table-column fixed width="100px" prop="id">
               <template slot="header" slot-scope="scope">
                 <el-tooltip content="编号" placement="top">
