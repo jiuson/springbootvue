@@ -42,67 +42,8 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: "Main1",
-      components: {
-      },
-      data: function () {
-          let a = {};
-        return a;
-      },
-      methods: {
-        userList: function () {
-          this.$router.push('/userList');
-        },
-
-        consumeMonth: function () {
-          this.$router.push('/consumeMonth');
-        },
-
-        chart: function () {
-
-        },
-
-        /**
-         *
-         */
-        consumeDay: function () {
-          this.$router.push('/consumeDay');
-        }
-      }
-    }
-</script>
+<script src="./main.js"></script>
 
 <style lang="scss" scoped>
-  .el-header{
-    background-color: #5e99d1;
-    color: black;
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: left;
-    line-height: 100px;
-  }
-
-  .el-main {
-    background-color: #fdfbff;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 160px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 120px;
-  }
-
+  @import "./main";
 </style>
