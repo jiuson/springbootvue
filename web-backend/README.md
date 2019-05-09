@@ -30,6 +30,10 @@ npm run build --report
 #axios全局封装参考:https://www.cnblogs.com/ldlx-mars/p/7908950.html
 
 #element-ui分页参考:https://www.cnblogs.com/sxgxiaoge/p/9394345.html
+
+利用Vue-cli中的proxyTable解决开发环境的跨域问题:https://www.jianshu.com/p/aa28a9619701
+
+
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

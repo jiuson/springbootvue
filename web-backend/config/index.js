@@ -10,11 +10,27 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    //配置跨域请求，配置完成之后需要重启编译项目
+    //代理配置表，在这里可以配置特定的请求代理到对应的API接口
+    proxyTable: {
+      '/api/springboot':{
+        target: 'http://127.0.0.1',//请求的接口域名或IP地址，开头是http或https
+        // secure: false,//如果是https接口，需要配置这个参数
+        changeOrigin: true,//是否跨域，如果接口跨域，需要进行这个参数配置
+        pathRewrite:{
+          '^/api/springboot': '/',//表示需要rewrite重写路径，路径的替换规则
+          /**
+           * 这里的配置是正则表达式，以/api/springboot开头的路径将会被'/'替换掉
+           * 假如后台的接口是：http://www.springbootvue.com/login
+           * 前端调取API接口应写：axios.get('/api/springboot/login')
+           */
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

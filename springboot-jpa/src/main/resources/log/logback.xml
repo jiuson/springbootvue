@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-    <property name="log_dir" value="F:/IdeaProjects/log/springboot-web" />
+    <property name="log_dir" value="w:/IdeaProjects/log/springboot-web" />
     <property name="maxHistory" value="30" />
     <property name="project_name" value="springboot-web"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
